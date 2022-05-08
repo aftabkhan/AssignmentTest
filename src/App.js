@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import 'antd/dist/antd.css';
 import './App.css';
+import { Layout } from 'antd';
+import Sidebar from "./Components/Sidebar";
+import GlobalHeader from './Components/Header';
+import Content from './Components/Content';
+import GlobalFooter from './Components/Footer';
+import Dashboard from "./Pages/Dashboard";
+import Reports from "./Pages/Reports";
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+            <Layout style={{minHeight: '100vh'}}>
+              <Sidebar />        
+              <Layout>                    
+                <GlobalHeader />
+                <Routes>
+                  {/* <Route path="/" element={<Content />} /> */}
+                  <Route path="/" element={<Dashboard />} />
+                  <Route path="/reports" element={<Reports />} />
+                </Routes>
+                <GlobalFooter />
+              </Layout>
+            </Layout>
+        </div>
+    </BrowserRouter>
   );
 }
 
